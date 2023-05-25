@@ -49,9 +49,25 @@ adicionarPaci.addEventListener('click', () => {
     let altura = form.altura.value;
     let gordura =  form.gordura.value;
 
-    console.log(nome);
-    console.log(peso);
-    console.log(altura);
-    console.log(gordura);
-    
+    let pacienteTr = document.createElement("tr");
+
+    let nomeTd = document.createElement("td");
+    let pesoTd = document.createElement("td");
+    let alturaTd = document.createElement("td");
+    let gorduraTd = document.createElement("td");
+    let imcTd = document.createElement("td");
+
+    nomeTd.textContent = nome;
+    pesoTd.textContent = peso;
+    alturaTd.textContent = altura;
+    gorduraTd.textContent = gordura;
+
+    pacienteTr.appendChild(nomeTd);
+    pacienteTr.appendChild(pesoTd);
+    pacienteTr.appendChild(alturaTd);
+    pacienteTr.appendChild(gorduraTd);
+
+    let tabela = document.querySelector('#tabela-pacientes')
+
+    tabela.appendChild(pacienteTr)
 })
