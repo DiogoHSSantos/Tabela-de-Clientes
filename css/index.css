@@ -70,6 +70,7 @@ td, th {
 	margin: 0;
 	border: 1px solid #ccc;
 	text-align: center;
+	width: 100%;
 }
 
 th{
@@ -89,7 +90,6 @@ label{
 	width: 100%;
 	border: 1px solid #ccc;
 	padding: .7em;
-	width: 100%;
 }
 
 .campo-medio{
@@ -139,6 +139,31 @@ button[disabled=disabled], button:disabled {
 .campo-invalido{
 	background: #F44E3F;
 	color: #fff;
+}
+.paciente{
+	cursor: pointer;
+	position: relative;
+	
+}
+
+.paciente:after{
+	content: '';
+	position: absolute;
+	background: #252525;
+	height: 2px;
+	width: 100%;
+	bottom: 16px;
+	left: 0;
+	opacity: 0;
+}
+
+.explicacaoDeComoApagar{
+	font-size: 1.5em;
+	border: none;
+	text-align: center;
+	font-weight: 500;
+	margin-top: 30px;
+	
 }
 
 footer{

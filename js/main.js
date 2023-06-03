@@ -3,41 +3,34 @@ var titulo = document.querySelector('.titulo');
 titulo.innerHTML= 'Aparcida Nutricionista.';
 
 
+
+
+let adicionarPaci = document.querySelector('#adicionar-paciente');
+const tabelaPacientes = document.querySelector('#tabela-pacientes');
 const pacientes = document.querySelectorAll('.paciente');
-const tabelaPacientes = document.querySelector('#tabela-pacientes')
 
 
-for (let i = 0 ; i < pacientes.length ; i++){
-    let tdnome = pacientes[i].querySelector('.info-nome');
-    let nome = tdnome.textContent;
-
-    let tdpeso = pacientes[i].querySelector('.info-peso');
-    let peso = tdpeso.textContent;
-
-    let tdaltura = pacientes[i].querySelector('.info-altura');
-    let altura = tdaltura.textContent;
-
-    let tdgordura = pacientes[i].querySelector('.info-gordura');
-    let gordura = tdgordura.textContent;
-    
-    let result = pacientes[i].querySelector('.info-imc');
-
+adicionarPaci.addEventListener('click', () => {
+    event.preventDefault()
+    let form = document.querySelector('#form-adiciona');
+    let inputs = form.querySelectorAll('input');
+    let valor = verificaValorDosInputs(inputs);
+    let pesoValido = verificaPesoValido(form);
+    let alturaValida = verificaAlturaValida(form);
     
 
-    if(peso > 400){
-        result.innerHTML = 'peso invalido!';
-        pacientes[i].classList.add('campo-invalido');
-    } else if(altura > 3.00){
-        result.innerHTML = 'altura invalida!';
-        pacientes[i].classList.add('campo-invalido');
-    }else{
-        let imc = calculaImc(altura, peso);
-        result.innerHTML = imc;
+
+    if(!valor && !pesoValido && !alturaValida){
+        let paciente = obtemPacienteDoForm(form);
+        
+        let pacienteTr = montaTr(paciente);
+        
+
+        let tabela = document.querySelector('#tabela-pacientes');
+        tabela.appendChild(pacienteTr);
+
+        form.reset();
     }
-}
+});
 
-function calculaImc(altura, peso){
-    let imc = 0;
-    imc = peso / (altura * altura);
-    return imc.toFixed(2);
-}
+

@@ -1,31 +1,3 @@
-let adicionarPaci = document.querySelector('#adicionar-paciente');
-
-adicionarPaci.addEventListener('click', () => {
-    event.preventDefault()
-    let form = document.querySelector('#form-adiciona');
-    let inputs = form.querySelectorAll('input')
-
-    for(let i = 0 ; i < inputs.length ; i++){
-        var valor = inputs[i].value;
-    };
-
-
-    if(valor == ''){
-        mensagemDeErro()
-    }else{
-        let paciente = obtemPacienteDoForm(form);
-        
-        let pacienteTr = montaTr(paciente);
-        
-
-        let tabela = document.querySelector('#tabela-pacientes');
-        tabela.appendChild(pacienteTr);
-
-        form.reset();
-    }
-});
-
-
 function obtemPacienteDoForm(form){
 
     let paciente = {
@@ -35,10 +7,9 @@ function obtemPacienteDoForm(form){
         gordura: form.gordura.value ,
         imc: calculaImc(form.altura.value, form.peso.value)
     }
-
+    
     return paciente;
 };
-
 
 function montaTr(paciente){
     let pacienteTr = document.createElement("tr");
@@ -67,3 +38,46 @@ function mensagemDeErro(){
     return erro;
     
 };
+
+function verificaValorDosInputs(inputs){
+    for(let i = 0 ; i < inputs.length ; i++){
+        var valor = inputs[i].value;
+    };
+    if(valor == ''){
+        valor = true;
+        alert('valor faltando')
+    }else{
+        valor = false
+    }
+    return valor
+};
+
+function verificaPesoValido(form){
+    let valorDoPeso = form.querySelector('#peso');
+    let pesoValido = valorDoPeso.value;
+    if(pesoValido > 300 || pesoValido <= 0){
+        pesoValido = true;
+        alert('peso invalido')
+    } else {
+        pesoValido = false;
+    };
+    return pesoValido;
+};
+
+function verificaAlturaValida(form){
+    let valorDaAltura = form.querySelector('#altura');
+    let alturaValida = valorDaAltura.value;
+    if(alturaValida > 3.00 || alturaValida <= 0.50){
+        pesoValido = true;
+        alert('altura invalida')
+    } else {
+        alturaValida = false;
+    };
+    return alturaValida;
+};
+
+function calculaImc(altura, peso){
+    let imc = 0;
+    imc = peso / (altura * altura);
+    return imc.toFixed(2);
+}
