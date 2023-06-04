@@ -171,3 +171,25 @@ footer{
 	width: 100vw;
 	height: 200px;
 }
+
+
+
+
+#filtrarTabela{
+	padding: 8px;
+	width: 50%;
+	margin-bottom: 20px;
+	outline: none;
+	border-radius: 20px;
+	border: 2px solid #e4e4e4;
+}
+#labelFT{
+	margin-left: 18%;
+	margin-bottom: 10px;
+}
+
+
+.esconderItemLista{
+	display: none;
+}
+
