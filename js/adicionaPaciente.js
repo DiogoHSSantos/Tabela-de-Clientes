@@ -76,8 +76,8 @@ function verificaAlturaValida(form){
     return alturaValida;
 };
 
-function calculaImc(altura, peso){
-    let imc = 0;
-    imc = peso / (altura * altura);
-    return imc.toFixed(2);
-}
+function adicionaPacienteNaTabela(paciente){
+    let pacienteTr = montaTr(paciente);
+    let tabela = document.querySelector('#tabela-pacientes');
+    tabela.appendChild(pacienteTr);
+};

@@ -6,7 +6,20 @@ botaoAdicionar.addEventListener('click', ()=>{
     xhr.open('GET', 'https://raw.githubusercontent.com/loresgarcia/Pacientes-API/master/pacientes.json');
 
     xhr.addEventListener('load', ()=>{
-        console.log(xhr.responseText);
+
+        if(xhr.status == 200){
+            let resposta = xhr.responseText;
+            let pacientes = JSON.parse(resposta);
+
+            pacientes.forEach((paciente) => {
+                adicionaPacienteNaTabela(paciente);
+            });
+        }else{
+            alert(xhr.status);
+            alert(xhr.responseText);
+        };
+
+        
     });
 
     xhr.send()
